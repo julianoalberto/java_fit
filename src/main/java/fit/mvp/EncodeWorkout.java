@@ -1,10 +1,7 @@
 package fit.mvp;
 
 import com.garmin.fit.*;
-
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Random;
 
 public class EncodeWorkout {
     public static void main(String[] args) {
@@ -124,9 +121,9 @@ public class EncodeWorkout {
         msg.setMessageIndex(3);
         
         msg.setDurationType(WktStepDuration.REPEAT_UNTIL_STEPS_CMPLT);
-        msg.setDurationValue(1L);
+        msg.setDurationValue(1L); // from stap
 
-        msg.setTargetValue(3L); // repeat
+        msg.setTargetValue(3L); // number of repetitions
 
         encode.write(msg);
     }
