@@ -1,0 +1,30 @@
+##
+## file_id message
+##
+workout:
+    file_id:
+        type:
+        manufacturer:
+        product:
+        serial_number:
+        time_created:
+
+##
+## workout message
+##
+    workout:
+        sport:
+        num_valid_steps:
+        wkt_name:
+
+##
+## workout_step message
+##
+    workout_steps:
+        -
+            message_index:
+            wkt_step_name:
+            duration_type:
+            duration_value:
+            target_type:
+            target_value:
