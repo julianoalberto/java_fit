@@ -32,7 +32,7 @@ public class DecodeWorkout {
         FileInputStream in;
 
         //String filePath = "/home/jalberto/java_fit/Workouts/N5-3030-7X3_workout.fit";
-        String filePath = "/home/jalberto/java_fit/Test_workout.fit";
+        String filePath = "/home/jalberto/java_fit/AAA_workout.fit";
         
         System.out.println("Decoding FIT file: " + filePath);
 
@@ -120,12 +120,20 @@ public class DecodeWorkout {
         }
 
         @Override
-        public void onMesg(WorkoutStepMesg mesg) {
-            System.out.println(mesg);
-            System.out.println(mesg.getMessageIndex());
-            System.out.println(mesg.getWktStepName());
-            System.out.println(mesg.getDurationType());
-            System.out.println(mesg.getTargetType());
+        public void onMesg(WorkoutStepMesg msg) {
+            System.out.println(msg);
+            System.out.println(msg.getMessageIndex());
+            System.out.println(msg.getWktStepName());
+            System.out.println(msg.getIntensity());
+            
+            System.out.println(msg.getDurationType());
+            System.out.println(msg.getDurationTime());
+
+            System.out.println(msg.getTargetType());
+            System.out.println(msg.getTargetValue());
+            System.out.println(msg.getCustomTargetHeartRateLow());
+            System.out.println(msg.getCustomTargetHeartRateHigh());
+
         }
     }    
 }
