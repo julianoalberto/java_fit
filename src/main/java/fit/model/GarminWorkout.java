@@ -3,6 +3,8 @@ package fit.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.garmin.fit.Mesg;
+
 public class GarminWorkout implements Workout {
     protected final WorkoutData data;
     protected final WorkoutMetadata metadata;
@@ -43,5 +45,18 @@ public class GarminWorkout implements Workout {
             step.getWorkoutStepMesg().setMessageIndex(i++);
         }
         return numberedSteps;
+    }
+
+    @Override
+    public List<Mesg> asMessages() {
+        ArrayList<Mesg> messages = new ArrayList<Mesg>();
+        messages.add(getWorkoutMetadata().getFileIdMesg());
+        messages.add(getWorkoutData().getWorkoutMesg());
+
+        for (WorkoutStep stp : getSteps()) {
+            messages.add(stp.getWorkoutStepMesg());
+        }
+
+        return messages;
     }
 }

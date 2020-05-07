@@ -1,26 +1,18 @@
 package fit.mvp;
 
-import java.lang.reflect.Array;
 import java.util.Date;
 
 import com.garmin.fit.DateTime;
-import com.garmin.fit.File;
 import com.garmin.fit.FileEncoder;
 import com.garmin.fit.FileIdMesg;
 import com.garmin.fit.Fit;
 import com.garmin.fit.FitRuntimeException;
-import com.garmin.fit.GarminProduct;
-import com.garmin.fit.Intensity;
-import com.garmin.fit.Manufacturer;
-import com.garmin.fit.Sport;
-import com.garmin.fit.WktStepDuration;
-import com.garmin.fit.WktStepTarget;
+import com.garmin.fit.Mesg;
 import com.garmin.fit.WorkoutMesg;
 import com.garmin.fit.WorkoutStepMesg;
 
 import fit.model.GarminWorkout;
 import fit.model.WorkoutFactory;
-import fit.model.WorkoutStep;
 import fit.model.WorkoutStepHeartRate;
 import fit.model.WorkoutStepRepeat;
 
@@ -55,14 +47,18 @@ public class EncodeWorkout {
         w.addStep(new WorkoutStepHeartRate(132, 138, 15, "N1"));
         w.addStep(new WorkoutStepRepeat(1, 3));
         w.addStep(new WorkoutStepHeartRate(137, 143, 300, "85 RPM"));
+
+        for (Mesg msg : w.asMessages()) {
+            encode.write(msg);
+        }
          //TEST adding steps and getting from Array
          
-        writeFileIdMesg(w, encode);
-        writeWorkoutMesg(w, encode);
+        // writeFileIdMesg(w, encode);
+        // writeWorkoutMesg(w, encode);
 
-        for (WorkoutStep s : w.getSteps()) {
-            encode.write(s.getWorkoutStepMesg());
-        }
+        // for (WorkoutStep s : w.getSteps()) {
+        //     encode.write(s.getWorkoutStepMesg());
+        // }
 
         // warmUp(encode);
         // sprint(encode);
