@@ -39,12 +39,15 @@ public class GarminWorkout implements Workout {
 
     @Override
     public List<WorkoutStep> getSteps() {
-        List<WorkoutStep> numberedSteps = new ArrayList<WorkoutStep>(steps);
+        List<WorkoutStep> indexedSteps = new ArrayList<WorkoutStep>(steps);
+        
         int i = 0;
-        for (WorkoutStep step : numberedSteps) {
-            step.getWorkoutStepMesg().setMessageIndex(i++);
+        for (WorkoutStep step : indexedSteps) {
+            step.getWorkoutStepMesg().setMessageIndex(i);
+            i++;
         }
-        return numberedSteps;
+        
+        return indexedSteps;
     }
 
     @Override
@@ -53,7 +56,9 @@ public class GarminWorkout implements Workout {
         messages.add(getWorkoutMetadata().getFileIdMesg());
         messages.add(getWorkoutData().getWorkoutMesg());
 
-        for (WorkoutStep stp : getSteps()) {
+        List<WorkoutStep> stepMessages = getSteps();
+
+        for (WorkoutStep stp : stepMessages) {
             messages.add(stp.getWorkoutStepMesg());
         }
 
