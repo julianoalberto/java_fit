@@ -15,7 +15,7 @@ public class WorkoutStepHeartRate extends AbstractWorkoutStep {
     
     private static Pattern PATTERN;
     static {
-        PATTERN = Pattern.compile("[A-Z0-9\\s]{1,15}");
+        PATTERN = Pattern.compile("[A-Za-z0-9\\-\\s]{1,15}");
     }
 
     private int minHeartRate;
@@ -86,9 +86,14 @@ public class WorkoutStepHeartRate extends AbstractWorkoutStep {
     }
 
     public void setStepLabel(String stepLabel) {
+        if (stepLabel == null) {
+            stepLabel = getDefaultStepLabel();
+        }
+
         if (!isValidStepLabel(stepLabel)) {
             throw new IllegalArgumentException("invalid step label: " + stepLabel);
         }
+
         this.stepLabel = stepLabel;
         workoutStepMesg.setWktStepName(stepLabel);
     }
@@ -110,11 +115,15 @@ public class WorkoutStepHeartRate extends AbstractWorkoutStep {
     }
 
 	public static boolean isValidStepLabel(String stepLabel) {
-        // need to investigate behavior of null and blank strings, so will accept them for now
-        if (stepLabel == null || stepLabel.isEmpty()) {
-            return true;
+        if (stepLabel == null) {
+            return false;
         }
         
         return PATTERN.matcher(stepLabel).matches();
-	}
+    }
+    
+    private String getDefaultStepLabel() {
+        return getMinHeartRate() + "-" + getMaxHeartRate() +
+            " " + getDuration() + "s";
+    }
 }

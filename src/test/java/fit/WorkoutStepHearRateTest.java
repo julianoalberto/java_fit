@@ -55,7 +55,7 @@ public class WorkoutStepHearRateTest
         
         assertEquals("seconds", Long.valueOf(30000L), Long.valueOf(msg.getDurationValue()));
 
-        assertNull("label null", msg.getWktStepName());
+        assertNotNull("label not null", msg.getWktStepName());
         
     }
 
@@ -106,18 +106,24 @@ public class WorkoutStepHearRateTest
     
     @Test
     public void validateStepLabel() {
-        assertTrue("blank", WorkoutStepHeartRate.isValidStepLabel(""));
-        assertTrue("null", WorkoutStepHeartRate.isValidStepLabel(null));
+        assertFalse("blank", WorkoutStepHeartRate.isValidStepLabel(""));
+        assertFalse("not null", WorkoutStepHeartRate.isValidStepLabel(null));
         assertTrue("letter", WorkoutStepHeartRate.isValidStepLabel("A"));
         assertTrue("digit", WorkoutStepHeartRate.isValidStepLabel("0"));
         assertTrue("space", WorkoutStepHeartRate.isValidStepLabel(" "));
         assertFalse("longer", WorkoutStepHeartRate.isValidStepLabel("AAAAAAAAAAAAAAAAAAA"));
-        assertFalse("invalid char", WorkoutStepHeartRate.isValidStepLabel("X-0"));
-        assertTrue("valid", WorkoutStepHeartRate.isValidStepLabel("85 RPM UP"));        
+        assertTrue("valid", WorkoutStepHeartRate.isValidStepLabel("X-0"));
+        assertTrue("valid", WorkoutStepHeartRate.isValidStepLabel("85 RPM UP"));
+        assertTrue("valid", WorkoutStepHeartRate.isValidStepLabel("85rpm UP"));       
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void stepLabelInvalid() {
-        stp.setStepLabel("A-BC");
+        stp.setStepLabel("A+BC");
     }    
+
+    @Test
+    public void validateDefaultStepLabel() {
+        assertEquals("message", "100-150 30s", new WorkoutStepHeartRate(100, 150, 30).getStepLabel());
+    }
 }

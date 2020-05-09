@@ -32,9 +32,10 @@ public class GarminWorkout implements Workout {
     }
 
     @Override
-    public void addStep(WorkoutStep step) {
+    public Workout addStep(WorkoutStep step) {
         steps.add(step);
         data.setNumValidSteps(steps.size());
+        return this;
     }
 
     @Override

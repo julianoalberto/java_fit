@@ -57,7 +57,7 @@ public class WorkoutFactoryTest
         assertTrue("exact", WorkoutData.isValidWorkoutName("AAAAAAAAAAAAAA")); // exact length
         assertFalse("longer", WorkoutData.isValidWorkoutName("AAAAAAAAAAAAAAAAAAAAA")); // longer length
 
-        assertFalse("lower case", WorkoutData.isValidWorkoutName("a"));
+        assertTrue("lower case", WorkoutData.isValidWorkoutName("a"));
         assertTrue("upper case", WorkoutData.isValidWorkoutName("ABC"));
 
         assertTrue("digit", WorkoutData.isValidWorkoutName("0"));
@@ -69,6 +69,6 @@ public class WorkoutFactoryTest
         assertTrue("letter dash digit", WorkoutData.isValidWorkoutName("A-9"));
 
         assertTrue("valid name", WorkoutData.isValidWorkoutName("PMA-3030X10"));
-        assertFalse("invalid name", WorkoutData.isValidWorkoutName("PMA-3030x10"));
+        assertTrue("valid name", WorkoutData.isValidWorkoutName("PMA-3030x10"));
     }
 }
