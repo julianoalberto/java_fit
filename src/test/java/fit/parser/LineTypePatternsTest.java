@@ -149,6 +149,32 @@ public class LineTypePatternsTest {
     }
 
     @Test
+    public void testValidRepeat() {
+        ArrayList<String> lines = new ArrayList<String>();
+        lines.add("repeat previous 2 steps 5 times");
+        lines.add("repeat previous 2 steps 10000 times");
+
+        for (String line : lines) {
+            Matcher m = LineType.REPEAT.pattern.matcher(line);
+            assertTrue(line, m.matches());
+            printGroups(m);
+        }
+    }
+
+    @Test
+    public void testInvalidRepeat() {
+        ArrayList<String> lines = new ArrayList<String>();
+        lines.add("repeat n steps x times");
+        lines.add("repeat 2 steps x times");
+        lines.add("do previous 2 steps 4 times");
+        lines.add("repeat previous 0 steps 0 times ");
+
+        for (String line : lines) {
+            assertFalse(line, LineType.REPEAT.pattern.matcher(line).matches());
+        }
+    }
+
+    @Test
     public void testValidStep() {
         ArrayList<String> lines = new ArrayList<String>();
         lines.add("do 45m at n1 \"85 RPM\"");
