@@ -7,7 +7,7 @@ import com.garmin.fit.WorkoutMesg;
 public class WorkoutData {
     private static Pattern PATTERN;
     static {
-        PATTERN = Pattern.compile("[A-Z0-9\\-]{1,15}");
+        PATTERN = Pattern.compile("[A-Za-z0-9\\-]{1,15}");
     }
 
     private WorkoutMesg workoutMesg;

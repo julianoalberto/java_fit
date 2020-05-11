@@ -11,7 +11,7 @@ public interface Workout {
 
     public int getTotalSteps();
 
-    public void addStep(WorkoutStep step);
+    public Workout addStep(WorkoutStep step);
 
     public List<WorkoutStep> getSteps();
 
