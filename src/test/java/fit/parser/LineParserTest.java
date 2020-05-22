@@ -7,13 +7,17 @@ import static fit.parser.line.LineType.REPEAT;
 import static fit.parser.line.LineType.STEP;
 import static fit.parser.line.LineType.UNKNOWN;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
+import java.util.Map;
 
 import org.junit.Test;
 
-import fit.parser.line.LineParser;
 import fit.parser.line.Line;
+import fit.parser.line.LineParser;
+import fit.parser.line.LineType;
+import fit.parser.line.TokenType;
 
 public class LineParserTest {
     
@@ -57,9 +61,39 @@ public class LineParserTest {
 
     
     @Test
-    public void testParseLineName()  throws ParseException {
-        String lineContent = "name B12-SPRINT";
+    public void testParseLineTokensName()  throws ParseException {
+        String name = "B12-SPRINT";
+    	String lineContent = "name " + name;
         Line line = LineParser.parse(lineContent);
-        System.out.println(line.getTokens());
+        Map<String, String> tokens = line.getTokens();
+        
+        assertEquals(LineType.NAME, line.getType());
+        assertEquals(1, tokens.size());
+        assertTrue(TokenType.WORKOUT_NAME.name, tokens.containsKey(TokenType.WORKOUT_NAME.name));
+        assertEquals(name, tokens.get(TokenType.WORKOUT_NAME.name));
     }
+    
+    @Test
+    public void testParseLineTokensComment()  throws ParseException {
+        String comment = "fazer em subida quando possível";
+    	String lineContent = "#" + comment;
+        Line line = LineParser.parse(lineContent);
+        Map<String, String> tokens = line.getTokens();
+        
+        assertEquals(LineType.COMMENT, line.getType());
+        assertEquals(1, tokens.size());
+        assertTrue(TokenType.COMMENT_LINE.name, tokens.containsKey(TokenType.COMMENT_LINE.name));
+        assertEquals(comment, tokens.get(TokenType.COMMENT_LINE.name));
+    }
+    
+//    @Test
+//    public void testParseLineComment()  throws ParseException {
+//        String lineContent = "name B12-SPRINT";
+//        Line line = LineParser.parse(lineContent);
+//        System.out.println(line.getTokens());
+//        
+//        for (TokenType tt : line.getType().tokens) {
+//			System.out.println(tt.name);
+//		}
+//    }
 }

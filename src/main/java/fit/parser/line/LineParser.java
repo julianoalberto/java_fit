@@ -35,7 +35,7 @@ public class LineParser {
                         }
                         else {
                             throw new ParseException("invalid value <" + tokenValue +
-                                "> for <" + tokenType.name, 0);
+                                "> for <" + tokenType.name + ">", 0);
                         }
                     }
                     return new Line(lt, line, tokens);

@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public enum TokenType {
     BLANK_LINE("blankLine", "(\\s*)"),
     COMMENT_LINE("commentLine", "(.*)"),
-    WORKOUT_NAME("workoutName", "([A-Z0-9\\-]{1,12})"), //B12-SPRINT
+    WORKOUT_NAME("workoutName", "([A-Z0-9\\-]{1,12})"),
     REPEAT_STEPS("repeatSteps", "(\\d+)"),
     REPEAT_TIMES("repeatTimes", "(\\d+)"),
     STEP_TIME("stepTime", "(.+)"),
