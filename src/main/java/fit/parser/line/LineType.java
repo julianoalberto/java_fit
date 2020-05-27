@@ -1,7 +1,6 @@
 package fit.parser.line;
 
 import java.util.regex.Pattern;
-import static fit.parser.line.TokenType.*;
 
 /**
  * Identify each line based on keywords and holds the regex pattern
@@ -11,24 +10,24 @@ public enum LineType {
     /* A blank line.
     Tokens:
     0 the line content */
-    BLANK("", "(?<blankLine>\\s*)", new TokenType[]{BLANK_LINE}),
+    BLANK("(?<content>\\s*)", new String[]{"content"}),
 
     /* A comment line.
     Tokens:
     0 comment */
-    COMMENT("#", "^\\s*#(?<commentLine>.*)", new TokenType[]{COMMENT_LINE}),
+    COMMENT("^\\s*(?<keyword>#)(?<comment>.*)", new String[]{"keyword", "comment"}),
 
     /* Line with the name of the workout.
     Tokens:
     0 name of the workout */
-    NAME("name", "^\\s*name\\s+(?<workoutName>.*)", new TokenType[]{WORKOUT_NAME}),
+    NAME("^\\s*(?<keyword>name)\\s+(?<name>.*)", new String[]{"keyword", "name"}),
 
     /* Repeat step line.
     Tokens:
     0 previous N steps to repeat
     1 repetition times */
-    REPEAT("repeat", "^\\s*repeat\\s+previous\\s+(?<repeatSteps>\\d+)\\s+steps\\s+(?<repeatTimes>\\d+)\\s+times",
-            new TokenType[]{REPEAT_STEPS, REPEAT_TIMES}),
+    REPEAT("^\\s*(?<keyword>repeat)\\s+previous\\s+(?<steps>\\d+)\\s+steps\\s+(?<times>\\d+)\\s+times",
+            new String[]{"keyword", "steps", "times"}),
 
     /* Step line.
     Tokens:
@@ -36,8 +35,8 @@ public enum LineType {
     1 time unit
     2 zone
     3 comment*/
-    STEP("do", "^\\s*do\\s+(?<stepTime>\\d+)(?<stepTimeUnit>[A-Za-z]){1}\\s+at\\s+(?<stepZone>[A-Za-z0-9]+[\\-]{1}[A-Za-z0-9]+|[A-Za-z0-9]+){1}(?<stepComment>\\s*\".+\")*",
-            new TokenType[]{STEP_TIME, STEP_TIME_UNIT, STEP_ZONE, STEP_COMMENT}),
+    STEP("^\\s*(?<keyword>do)\\s+(?<time>\\d+)(?<unit>[A-Za-z]){1}\\s+at\\s+(?<zone>[A-Za-z0-9]+[\\-]{1}[A-Za-z0-9]+|[A-Za-z0-9]+){1}\\s*(?<comment>\".+\")*",
+            new String[]{"keyword", "time", "unit", "zone", "comment"}),
     
     /* Unknown line. This is a special case used only to mark lines as not of any of the known
     types or blank.
@@ -45,15 +44,13 @@ public enum LineType {
     Instead, check with all other patterns and set type as UNKNOWN in case all of them fail.
     Tokens:
     0 content of the line */
-    UNKNOWN(null, "(?<nonBlankLine>.*)", new TokenType[]{NON_BLANK_LINE});    
+    UNKNOWN("(?<content>.*)", new String[]{"content"});    
 
-    public final String keyword;
     public final Pattern pattern;
-    public final TokenType[] tokens;
+    public final String[] groupNames;
 
-    LineType(String keyword, String pattern, TokenType[] tokens) {
-        this.keyword = keyword;
+    LineType(String pattern, String[] groupNames) {
         this.pattern = Pattern.compile(pattern);
-        this.tokens = tokens;
+        this.groupNames = groupNames;
     }
 }
