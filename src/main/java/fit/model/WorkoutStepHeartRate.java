@@ -23,7 +23,6 @@ public class WorkoutStepHeartRate extends AbstractWorkoutStep {
     private int duration;
     private String stepLabel;
 
-    
     private WorkoutStepHeartRate() {
         super();
         workoutStepMesg = new WorkoutStepMesg();

@@ -1,4 +1,4 @@
-package fit.mvp;
+package fit.mts;
 
 import com.garmin.fit.*;
 
@@ -8,15 +8,14 @@ import java.io.InputStream;
 public class DecodeWorkout {
     public static void main(String[] args) {
         Decode decode = new Decode();
-        //decode.skipHeader();        // Use on streams with no header and footer (stream contains FIT defn and data messages only)
-        //decode.incompleteStream();  // This suppresses exceptions with unexpected eof (also incorrect crc)
         MesgBroadcaster mesgBroadcaster = new MesgBroadcaster(decode);
         Listener listener = new Listener();
         FileInputStream in;
 
-        String filePath = "AAA_workout.fit";
-        
-        System.out.println("Decoding FIT file: " + filePath);
+        //String filePath = "B9_workout.fit";
+        String filePath = "PMA_workout.fit";
+        System.out.println("=========================");
+        System.out.println("File:\t" + filePath);
 
         try {
             in = new FileInputStream(filePath);
@@ -85,36 +84,49 @@ public class DecodeWorkout {
     private static class Listener implements WorkoutStepMesgListener, WorkoutMesgListener, FileIdMesgListener {
         @Override
         public void onMesg(FileIdMesg msg) {
-            System.out.println(msg);
-            System.out.println(msg.getType());
-            System.out.println(msg.getManufacturer());
-            System.out.println(msg.getProduct());
-            System.out.println(msg.getSerialNumber());
-            System.out.println(msg.getTimeCreated());
+            // System.out.println(msg);
+            // System.out.println(msg.getType());
+            // System.out.println(msg.getManufacturer());
+            // System.out.println(msg.getProduct());
+            System.out.println("Serial:\t" + msg.getSerialNumber());
+            // System.out.println(msg.getTimeCreated());
         }        
 
         @Override
         public void onMesg(WorkoutMesg mesg) {
-            System.out.println(mesg);
-            System.out.println(mesg.getSport());
-            System.out.println(mesg.getNumValidSteps());
-            System.out.println(mesg.getWktName());            
+            // System.out.println(mesg);
+            // System.out.println(mesg.getSport());
+            // System.out.println(mesg.getNumValidSteps());
+            System.out.println("Name:\t" + mesg.getWktName());            
         }
 
         @Override
         public void onMesg(WorkoutStepMesg msg) {
-            System.out.println(msg);
-            System.out.println(msg.getMessageIndex());
-            System.out.println(msg.getWktStepName());
-            System.out.println(msg.getIntensity());
+            // System.out.println(msg);
+            // System.out.println(msg.getMessageIndex());
+            // System.out.println(msg.getWktStepName());
+            // System.out.println(msg.getIntensity());
+            if (msg.getDurationType() == WktStepDuration.REPEAT_UNTIL_STEPS_CMPLT) {
+                System.out.println("*********");
+                System.out.println("from " + msg.getDurationValue() + " " + msg.getTargetValue() + " times");
+            } else {
+                System.out.println("----------");
+                System.out.println(msg.getDurationTime() + "s");
+                System.out.println(msg.getCustomTargetHeartRateLow() + "-" + msg.getCustomTargetHeartRateHigh() + "bpm");
+                if (msg.getWktStepName() != null && msg.getWktStepName().length() > 0) {
+                    System.out.println(msg.getWktStepName());
+                }                
+            }
             
-            System.out.println(msg.getDurationType());
-            System.out.println(msg.getDurationTime());
-
-            System.out.println(msg.getTargetType());
-            System.out.println(msg.getTargetValue());
-            System.out.println(msg.getCustomTargetHeartRateLow());
-            System.out.println(msg.getCustomTargetHeartRateHigh());
+            // System.out.println("=======");
+            // System.out.println("Type:\t" + msg.getDurationType());
+            // System.out.println("Time:\t" + msg.getDurationTime());
+            // System.out.println("HR:\t" + msg.getCustomTargetHeartRateLow() + "-" + msg.getCustomTargetHeartRateHigh());
+            // System.out.println("Comm:\t" + msg.getWktStepName());
+            // System.out.println(msg.getTargetType());
+            // System.out.println(msg.getTargetValue());
+            // System.out.println(msg.getCustomTargetHeartRateLow());
+            // System.out.println(msg.getCustomTargetHeartRateHigh());
 
         }
     }    
