@@ -11,17 +11,17 @@ import fit.model.WorkoutStepRepeat;
 import fit.mts.WorkoutStepZoneMinutes;
 import fit.mts.WorkoutStepZoneSeconds;
 
-public class B9 extends MTSGarminWorkout {
-    public static final String NAME = "B9";
+public class B11 extends MTSGarminWorkout {
+    public static final String NAME = "B11";
 
-    public B9(Long workoutSerial) {
+    public B11(Long workoutSerial) {
         super();
         w.getWorkoutMetadata().setSerialnumber(workoutSerial);
         w.getWorkoutData().setWorkoutName(NAME);
 
         // 10mn N1-85rpm
         w.addStep(new WorkoutStepZoneMinutes(N1_BLACK, 10, "85 RPM"));
-        
+
         // 20mn N2-95rpm c/ 6 sprints força
         w.addStep(new WorkoutStepZoneMinutes(N2_BLACK, 3, "95 RPM NX STOP"));
         w.addStep(new WorkoutStepZoneSeconds(N2_BLACK, 15, "STOP MAX"));
