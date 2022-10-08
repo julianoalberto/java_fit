@@ -20,6 +20,7 @@ import fit.mts.workouts.N5_6X3;
 import fit.mts.workouts.N5_7X3;
 import fit.mts.workouts.N5_8X3;
 import fit.mts.workouts.N5_9X3;
+import fit.mts.workouts.N6_1MX9;
 import fit.mts.workouts.PMA;
 
 public class MTSSetGenerator {
@@ -47,5 +48,6 @@ public class MTSSetGenerator {
         WorkoutWriter.writeMTSGarminWorkout(new N5_30_30_8X3(++id));
         WorkoutWriter.writeMTSGarminWorkout(new N5_30_30_9X3(++id));
         WorkoutWriter.writeMTSGarminWorkout(new N5_30_30_10X3(++id));
+        WorkoutWriter.writeMTSGarminWorkout(new N6_1MX9(++id));
     }
 }
