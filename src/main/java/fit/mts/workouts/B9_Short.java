@@ -21,7 +21,7 @@ public class B9_Short extends MTSGarminWorkout {
 
         // 5mn N1-85rpm
         w.addStep(new WorkoutStepZoneMinutes(N1_BLACK, 5, "85 RPM"));
-        
+
         // 20mn N3-95rpm c/ 6 sprints força
         w.addStep(new WorkoutStepZoneMinutes(N3_RED, 3, "95 RPM NX STOP"));
         w.addStep(new WorkoutStepZoneSeconds(N5_BLACK, 15, "STOP MAX"));
@@ -32,7 +32,7 @@ public class B9_Short extends MTSGarminWorkout {
         w.addStep(new WorkoutStepZoneMinutes(N1_GREEN, 5, "85 RPM NX UP"));
 
         // 6xs 5mn N4-55rpm a subir / 3mn N1-85rpm
-        w.addStep(new WorkoutStepZoneMinutes(N4_BLACK, 5, "55 RPM UP"));
+        w.addStep(new WorkoutStepZoneMinutes(N4_BLACK, 4, "50 RPM UP"));
         w.addStep(new WorkoutStepZoneMinutes(N1_GREEN, 3, "85 RPM"));
         fromStep = w.getTotalSteps() - 1;
         w.addStep(new WorkoutStepRepeat(fromStep, 6));
