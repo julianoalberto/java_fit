@@ -38,7 +38,7 @@ public class B9_Short extends MTSGarminWorkout {
         w.addStep(new WorkoutStepRepeat(fromStep, 6));
 
         // 5mn N3-85/90rpm em plano
-        w.addStep(new WorkoutStepZoneMinutes(N3_RED, 5, "90 RPM"));
+        w.addStep(new WorkoutStepZoneMinutes(N3_RED, 50, "90 RPM"));
 
         // 5mn N1-85rpm
         w.addStep(new WorkoutStepZoneMinutes(N1_GREEN, 5, "85 RPM"));

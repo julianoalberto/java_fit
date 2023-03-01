@@ -1,22 +1,24 @@
 package fit.mts;
 
-import fit.mts.workouts.B9;
 import fit.mts.workouts.B13;
 import fit.mts.workouts.B14;
+import fit.mts.workouts.B9;
 import fit.mts.workouts.B9_Short;
 import fit.mts.workouts.BXX_6M3X;
+import fit.mts.workouts.FTP_Pre_Test;
 import fit.mts.workouts.FTP_Test;
+import fit.mts.workouts.N2_N3_10M;
 import fit.mts.workouts.N3_15MX3;
 import fit.mts.workouts.N3_20MX3;
 import fit.mts.workouts.N5_10X3;
 import fit.mts.workouts.N5_14X3;
 import fit.mts.workouts.N5_2MX5;
 import fit.mts.workouts.N5_2MX6;
+import fit.mts.workouts.N5_30_30_10X3;
 import fit.mts.workouts.N5_30_30_5X3;
 import fit.mts.workouts.N5_30_30_7X3;
 import fit.mts.workouts.N5_30_30_8X3;
 import fit.mts.workouts.N5_30_30_9X3;
-import fit.mts.workouts.N5_30_30_10X3;
 import fit.mts.workouts.N5_6X3;
 import fit.mts.workouts.N5_7X3;
 import fit.mts.workouts.N5_8X3;
@@ -44,6 +46,7 @@ public class MTSSetGenerator {
         WorkoutWriter.writeMTSGarminWorkout(new N5_2MX6(++id));
         WorkoutWriter.writeMTSGarminWorkout(new N3_15MX3(++id));
         WorkoutWriter.writeMTSGarminWorkout(new N3_20MX3(++id));
+        WorkoutWriter.writeMTSGarminWorkout(new FTP_Pre_Test(++id));
         WorkoutWriter.writeMTSGarminWorkout(new FTP_Test(++id));
         WorkoutWriter.writeMTSGarminWorkout(new N5_30_30_5X3(++id));
         WorkoutWriter.writeMTSGarminWorkout(new N5_30_30_7X3(++id));
@@ -51,5 +54,6 @@ public class MTSSetGenerator {
         WorkoutWriter.writeMTSGarminWorkout(new N5_30_30_9X3(++id));
         WorkoutWriter.writeMTSGarminWorkout(new N5_30_30_10X3(++id));
         WorkoutWriter.writeMTSGarminWorkout(new N6_1MX9(++id));
+        WorkoutWriter.writeMTSGarminWorkout(new N2_N3_10M(++id));
     }
 }
