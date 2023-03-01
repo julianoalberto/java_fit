@@ -1,5 +1,7 @@
 package fit.mts;
 
+import java.io.File;
+
 import com.garmin.fit.FileEncoder;
 import com.garmin.fit.Fit;
 import com.garmin.fit.FitRuntimeException;
@@ -10,12 +12,13 @@ import fit.mts.workouts.MTSGarminWorkout;
 
 public class WorkoutWriter {
     public static final String WORKOUT_FILE_SUFFIX = "_workout.fit";
+    public static final String WORKOUT_OUTPUT_DIR = "Workouts";
     
     public static void writeMTSGarminWorkout(MTSGarminWorkout mtsGarminWorkout) {
         System.out.println("Encode Workout");
         GarminWorkout w = mtsGarminWorkout.getWorkout();
         FileEncoder encode;
-        String filePath = w.getWorkoutData().getWorkoutName() 
+        String filePath = WORKOUT_OUTPUT_DIR + File.separator + w.getWorkoutData().getWorkoutName() 
                             + WORKOUT_FILE_SUFFIX;
 
         try {

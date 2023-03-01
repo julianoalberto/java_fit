@@ -1,11 +1,13 @@
 package fit.mts.workouts;
 
-import static fit.mts.Zone.*;
+import static fit.mts.Zone.N1_BLACK;
+import static fit.mts.Zone.N1_GREEN;
+import static fit.mts.Zone.N1_RED;
+import static fit.mts.Zone.N5_BLACK;
 
 import fit.model.WorkoutStepRepeat;
 import fit.mts.WorkoutStepZoneMinutes;
 import fit.mts.WorkoutStepZoneSeconds;
-import fit.mts.Zone;
 
 public class PMA extends MTSGarminWorkout {
     public static final String NAME = "PMA";

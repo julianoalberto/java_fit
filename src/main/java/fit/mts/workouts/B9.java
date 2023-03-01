@@ -5,7 +5,6 @@ import static fit.mts.Zone.N1_GREEN;
 import static fit.mts.Zone.N2_BLACK;
 import static fit.mts.Zone.N3_RED;
 import static fit.mts.Zone.N4_BLACK;
-import static fit.mts.Zone.N5_BLACK;
 
 import fit.model.WorkoutStepRepeat;
 import fit.mts.WorkoutStepZoneMinutes;

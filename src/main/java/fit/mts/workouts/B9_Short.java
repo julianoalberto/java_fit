@@ -2,7 +2,6 @@ package fit.mts.workouts;
 
 import static fit.mts.Zone.N1_BLACK;
 import static fit.mts.Zone.N1_GREEN;
-import static fit.mts.Zone.N2_BLACK;
 import static fit.mts.Zone.N3_RED;
 import static fit.mts.Zone.N4_BLACK;
 import static fit.mts.Zone.N5_BLACK;
