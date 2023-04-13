@@ -2,6 +2,7 @@ package fit.mts;
 
 import fit.mts.workouts.B9;
 import fit.mts.workouts.B9_Short;
+import fit.mts.workouts.N5_2MX4;
 import fit.mts.workouts.N5_4MX3;
 import fit.mts.workouts.PMA;
 
@@ -13,9 +14,10 @@ public class MTSSetGenerator {
         WorkoutWriter.writeMTSGarminWorkout(new B9_Short(++id));
         WorkoutWriter.writeMTSGarminWorkout(new PMA(++id));
         WorkoutWriter.writeMTSGarminWorkout(new N5_4MX3(++id));
+        WorkoutWriter.writeMTSGarminWorkout(new N5_2MX4(++id));
         // WorkoutWriter.writeMTSGarminWorkout(new B13(++id));
         // WorkoutWriter.writeMTSGarminWorkout(new B14(++id));
-        // WorkoutWriter.writeMTSGarminWorkout(new BXX_6M3X(++id));        
+        // WorkoutWriter.writeMTSGarminWorkout(new BXX_6M3X(++id));
         // WorkoutWriter.writeMTSGarminWorkout(new N5_6X3(++id));
         // WorkoutWriter.writeMTSGarminWorkout(new N5_7X3(++id));
         // WorkoutWriter.writeMTSGarminWorkout(new N5_8X3(++id));
