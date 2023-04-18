@@ -34,7 +34,7 @@ public class B13 extends MTSGarminWorkout {
         w.addStep(new WorkoutStepZoneSeconds(N5_BLACK, 30, "MAX UP"));
         w.addStep(new WorkoutStepZoneMinutes(N1_GREEN, 3, "85 RPM"));
         fromStep = w.getTotalSteps() - 2;
-        w.addStep(new WorkoutStepRepeat(fromStep, 5));
+        w.addStep(new WorkoutStepRepeat(fromStep, 6));
 
         // 5mn N1-85rpm
         w.addStep(new WorkoutStepZoneMinutes(N1_BLACK, 5, "85 RPM"));
